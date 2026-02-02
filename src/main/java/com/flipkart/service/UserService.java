@@ -1,7 +1,5 @@
 package com.flipkart.service;
 
-import java.awt.print.Pageable;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -29,12 +27,16 @@ public class UserService {
 		return "User Details saved";
 	}
 
-	public void getUser() {
-		PageRequest p = PageRequest.of(0, 10);
-		Page<UserEntity> page = userRepository.findAll(p);
+	public Page<UserEntity> getUser() {
+	    PageRequest p = PageRequest.of(0, 10);
 
-		for (UserEntity entity : page) {
-			System.out.println(entity.getUserId());
-		}
+	    Page<UserEntity> page = userRepository.findAll(p);
+
+	    for (UserEntity entity : page) {
+	        System.out.println(entity.getUserId());
+	    }
+
+	    return page;
 	}
+
 }
